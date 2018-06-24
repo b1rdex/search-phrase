@@ -36,5 +36,7 @@ class SearcherTest extends TestCase
         self::assertCount(2, $searcher->search('ищи на сайте zergoru или звони на 12345678901'));
         // подходит под exact и fuzzy(тест проверки)
         self::assertCount(2, $searcher->search('это тест проверки, меня не забанят!'));
+        // подходит только под fuzzy(тест проверки), так как умлауты заменяются на латиницу
+        self::assertCount(1, $searcher->search('это тęçт прÖвÊркú, меня не забанят!'));
     }
 }
