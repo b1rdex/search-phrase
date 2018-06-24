@@ -8,6 +8,6 @@ class ExactMatch extends AbstractMatch
 {
     public function matches(string $text): bool
     {
-        return \stripos($text, $this->getPhrase()) !== false;
+        return \mb_stripos($text, $this->getPhrase()) !== false;
     }
 }
