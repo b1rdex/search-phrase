@@ -8,7 +8,6 @@ class TextNormalizer
 {
     public function replaceUmlauts(string $string): string
     {
-        setlocale(LC_ALL, 'en_US');
         $string = htmlentities($string, ENT_QUOTES, 'UTF-8');
         if (strpos($string, '&') !== false) {
             $replaced = preg_replace(
@@ -19,7 +18,9 @@ class TextNormalizer
             $string = html_entity_decode($replaced, ENT_QUOTES, 'UTF-8');
         }
 
+        setlocale(LC_ALL, 'en_US');
         $cp1251 = iconv('utf-8', 'windows-1251//TRANSLIT//IGNORE', $string);
+
         return iconv('windows-1251', 'utf-8', $cp1251);
     }
 }
