@@ -1,0 +1,22 @@
+{
+  "autoload": {
+    "psr-4": {
+      "Search\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Search\\Test\\": "test/"
+    }
+  },
+  "name": "",
+  "description": "",
+  "require": {
+    "php": "~7.1",
+    "ext-mbstring": "*",
+    "ext-iconv": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7.2"
+  }
+}
