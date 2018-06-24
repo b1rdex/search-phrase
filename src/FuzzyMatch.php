@@ -56,7 +56,7 @@ class FuzzyMatch extends AbstractMatch
 
     public function matches(string $text): bool
     {
-        return \preg_match($this->preparePhrase(), $text) > 0;
+        return \preg_match($this->preparePhrase(), $text) === 1;
     }
 
     /**
