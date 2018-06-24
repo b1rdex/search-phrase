@@ -15,7 +15,7 @@ class TextNormalizerTest extends TestCase
     public function it_should_replace_umlauts()
     {
         $sut = new TextNormalizer();
-        $umlauts = 'ąčęėįšųūžŠŒŽšœžŸ¥µÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýÿатак пизда рулям?её';
+        $umlauts = 'ąčęėįšųūžŠŒŽšœžŸ¥µÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýÿатак езда рулям?её';
         $result = $sut->replaceUmlauts($umlauts);
 
         die($result);
