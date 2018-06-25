@@ -78,7 +78,12 @@ class FuzzyMatch extends AbstractMatch
             );
         }
 
-        return $transliterator->transliterate($text);
+        static $normalized = [];
+        if (isset($normalized[$text])) {
+            return $normalized[$text];
+        }
+
+        return $normalized[$text] = $transliterator->transliterate($text);
     }
 
     public function matches(string $text): bool
