@@ -18,7 +18,6 @@ class SearcherTest extends TestCase
      */
     public function it_should_work()
     {
-        $normalizer = new TextNormalizer();
         $phrases = [
             new ExactMatch('тест проверки', ['действие 1']),
             new RegexpMatch('/[\d]{11}/i', ['действие 2']),
@@ -26,7 +25,7 @@ class SearcherTest extends TestCase
             new FuzzyMatch('zergo.ru', ['действие 1', 'действие 2']),
             new FuzzyMatch('Тecm npoBeРku'),
         ];
-        $searcher = new Searcher($normalizer, ...$phrases);
+        $searcher = new Searcher(...$phrases);
 
         // не находится
         self::assertCount(0, $searcher->search('а были ли тесты проверки?'));

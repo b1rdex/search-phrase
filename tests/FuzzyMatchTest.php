@@ -27,4 +27,16 @@ class FuzzyMatchTest extends TestCase
         $fuzzy3 = new FuzzyMatch('89025211120');
         self::assertTrue($fuzzy3->matches('8(902)521-11-20'));
     }
+
+    /**
+     * @test
+     */
+    public function it_should_normalize()
+    {
+        $sut = new FuzzyMatch('');
+        $symbols = 'ąčęėįšųūžŠŒŽšœžŸ¥µÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýÿатак езда рулям?её';
+        $normalized = $sut->normalize($symbols);
+        echo $normalized;
+        self::assertNotSame($symbols, $normalized);
+    }
 }
