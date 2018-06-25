@@ -54,34 +54,18 @@ class FuzzyMatch extends AbstractMatch
         'ь' => '[ьb]',
     ];
 
-    public function matches(string $text): bool
+    public function __construct(string $phrase, ?array $tags = null, ?string $normalized = null)
     {
-        return \preg_match($this->preparePhrase(), $text) === 1;
+        $normalized = $normalized ?? $this->normalizeAndPreparePhrase($phrase);
+
+        parent::__construct($phrase, $tags, $normalized);
     }
 
-    /**
-     * @todo Если думать о производительности, то можно это вынести в конструктор
-     * @todo чтобы не выполнять при каждом match()
-     *
-     * @return string
-     */
-    private function preparePhrase(): string
+    private function normalizeAndPreparePhrase(string $phrase): string
     {
-        $phrase = \mb_strtolower($this->getPhrase());
-        // удаляем всё, кроме букв и цифр из фразы
-        $prepared = \preg_replace('/[^[[:alnum:]]/u', '', $phrase);
-        $result = '';
-        // после каждого символа возможны мусорные символы (не буква и не цифра)
-        // todo: можно убрать это и один раз почистить текст при нормализации
-        // так должно быть быстрее, но код станет более запутанным
-        foreach (\preg_split('//u', $prepared) as $char) {
-            if ($char === '') {
-                continue;
-            }
-            $result .= \strtr($char, self::REPLACE_PAIRS) . '[^[:alnum:]]*';
-        }
+        $phrase = $this->normalize($phrase);
 
-        return '/' . $result . '/iu';
+        return '/' . \strtr($phrase, self::REPLACE_PAIRS) . '/iu';
     }
 
     public function normalize(string $text): string
@@ -95,5 +79,10 @@ class FuzzyMatch extends AbstractMatch
         }
 
         return $transliterator->transliterate($text);
+    }
+
+    public function matches(string $text): bool
+    {
+        return \preg_match($this->getNormalized(), $text) === 1;
     }
 }
