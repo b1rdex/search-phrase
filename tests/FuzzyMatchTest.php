@@ -36,7 +36,6 @@ class FuzzyMatchTest extends TestCase
         $sut = new FuzzyMatch('');
         $symbols = 'ąčęėįšųūžŠŒŽšœžŸ¥µÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýÿатак езда рулям?её';
         $normalized = $sut->normalize($symbols);
-        echo $normalized;
         self::assertNotSame($symbols, $normalized);
     }
 }

@@ -89,7 +89,7 @@ class FuzzyMatch extends AbstractMatch
         static $transliterator = null;
         if ($transliterator === null) {
             $transliterator = Transliterator::createFromRules(
-                ':: NFD; :: Lower(); :: [^абвгдеёжзиклмнопрстуфъцчшщъыьэюя]-Latin; :: Latin-ASCII; :: [:Nonspacing Mark:] Remove; :: NFC; :: [:^letter:] Remove;',
+                ':: NFD; :: Lower(); :: [^абвгдеёжзиклмнопрстуфъцчшщъыьэюя]-Latin; :: Latin-ASCII; :: [:Nonspacing Mark:] Remove; :: NFC; :: [^[:letter:][:digit:]] Remove;',
                 Transliterator::FORWARD
             );
         }
