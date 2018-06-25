@@ -36,4 +36,12 @@ class Searcher
 
         return $matched;
     }
+
+    /**
+     * @return \Search\MatchInterface[]
+     */
+    public function getQueries(): array
+    {
+        return $this->queries;
+    }
 }
