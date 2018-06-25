@@ -26,8 +26,6 @@ class SearchedDumpLoadFileTest extends TestCase
         $dump = $sut->dump($searcher);
         $searcher2 = $sut->load($dump);
 
-        \var_dump($searcher, $searcher2);
-
         self::assertEquals($searcher, $searcher2);
     }
 }
