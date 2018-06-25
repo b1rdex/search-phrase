@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Search\Test;
+namespace Search\Tests;
 
 use Search\ExactMatch;
 use PHPUnit\Framework\TestCase;

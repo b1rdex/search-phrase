@@ -10,4 +10,9 @@ class RegexpMatch extends AbstractMatch
     {
         return \preg_match($this->getPhrase(), $text) === 1;
     }
+
+    public function normalize(string $text): string
+    {
+        return $text;
+    }
 }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Search;
 
-use SebastianBergmann\CodeCoverage\Report\PHP;
+use Transliterator;
 
 class FuzzyMatch extends AbstractMatch
 {
@@ -82,5 +82,18 @@ class FuzzyMatch extends AbstractMatch
         }
 
         return '/' . $result . '/iu';
+    }
+
+    public function normalize(string $text): string
+    {
+        static $transliterator = null;
+        if ($transliterator === null) {
+            $transliterator = Transliterator::createFromRules(
+                ':: NFD; :: Lower(); :: [^абвгдеёжзиклмнопрстуфъцчшщъыьэюя]-Latin; :: Latin-ASCII; :: [:Nonspacing Mark:] Remove; :: NFC; :: [:^letter:] Remove;',
+                Transliterator::FORWARD
+            );
+        }
+
+        return $transliterator->transliterate($text);
     }
 }

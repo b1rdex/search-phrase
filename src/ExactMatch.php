@@ -10,4 +10,9 @@ class ExactMatch extends AbstractMatch
     {
         return \mb_stripos($text, $this->getPhrase()) !== false;
     }
+
+    public function normalize(string $text): string
+    {
+        return $text;
+    }
 }
