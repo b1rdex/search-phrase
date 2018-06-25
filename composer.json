@@ -8,7 +8,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Search\\Tests\\": "test/"
+      "Search\\Tests\\": "tests/"
     }
   },
   "require": {
